@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>\\nts162\KEG_Scripts\email\KimballEmailApp</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="Affirm.aspx">
+      <publishTime>07/30/2015 10:30:32</publishTime>
+    </File>
+    <File Include="bin/KimballEmailApp.dll">
+      <publishTime>08/03/2015 07:23:52</publishTime>
+    </File>
+    <File Include="bin/KimballEmailApp.pdb">
+      <publishTime>08/03/2015 07:23:52</publishTime>
+    </File>
+    <File Include="favicon.ico">
+      <publishTime>07/27/2015 11:43:57</publishTime>
+    </File>
+    <File Include="Index.aspx">
+      <publishTime>08/03/2015 07:22:47</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>07/23/2015 14:25:27</publishTime>
+    </File>
+    <File Include="Properties/favicon.ico">
+      <publishTime>07/27/2015 11:27:36</publishTime>
+    </File>
+    <File Include="Service References/Service.KEIMasterDir/KimballEmailApp.Service.KEIMasterDir.GroupMembers.datasource">
+      <publishTime>07/24/2015 14:30:37</publishTime>
+    </File>
+    <File Include="Service References/Service.KEIMasterDir/KimballEmailApp.Service.KEIMasterDir.strcEmployeePhoto.datasource">
+      <publishTime>07/24/2015 14:30:37</publishTime>
+    </File>
+    <File Include="Service References/Service.KEIMasterDir/KimballEmailApp.Service.KEIMasterDir.strcPeople.datasource">
+      <publishTime>07/24/2015 14:30:37</publishTime>
+    </File>
+    <File Include="Service References/Service.KEIMasterDir/KimballEmailApp.Service.KEIMasterDir.strcPerson.datasource">
+      <publishTime>07/24/2015 14:30:37</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>08/03/2015 07:23:52</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

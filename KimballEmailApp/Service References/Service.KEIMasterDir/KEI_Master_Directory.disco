@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="http://www-test.kess.keint.com/webservices/KEIMasterDirectory/KEI_Master_Directory.asmx?wsdl" docRef="http://www-test.kess.keint.com/webservices/KEIMasterDirectory/KEI_Master_Directory.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="http://www-test.kess.keint.com/webservices/KEIMasterDirectory/KEI_Master_Directory.asmx" xmlns:q1="http://www.kess.keint.com/webservices" binding="q1:DIR_ServiceSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="http://www-test.kess.keint.com/webservices/KEIMasterDirectory/KEI_Master_Directory.asmx" xmlns:q2="http://www.kess.keint.com/webservices" binding="q2:DIR_ServiceSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

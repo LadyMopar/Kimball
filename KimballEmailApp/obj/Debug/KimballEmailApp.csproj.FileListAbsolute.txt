@@ -1,0 +1,6 @@
+C:\Development\KEG IT\APPS\Exchange\KimballEmailTestTool\KimballEmailApp\bin\KimballEmailApp.dll.config
+C:\Development\KEG IT\APPS\Exchange\KimballEmailTestTool\KimballEmailApp\bin\KimballEmailApp.dll
+C:\Development\KEG IT\APPS\Exchange\KimballEmailTestTool\KimballEmailApp\bin\KimballEmailApp.pdb
+C:\Development\KEG IT\APPS\Exchange\KimballEmailTestTool\KimballEmailApp\obj\Debug\KimballEmailApp.csprojResolveAssemblyReference.cache
+C:\Development\KEG IT\APPS\Exchange\KimballEmailTestTool\KimballEmailApp\obj\Debug\KimballEmailApp.dll
+C:\Development\KEG IT\APPS\Exchange\KimballEmailTestTool\KimballEmailApp\obj\Debug\KimballEmailApp.pdb

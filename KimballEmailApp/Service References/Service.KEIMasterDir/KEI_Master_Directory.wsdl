@@ -1,0 +1,1560 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.kess.keint.com/webservices" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.kess.keint.com/webservices" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This web service is used as the KEI Master Directory.It will use KEI Active Directory to retrieve the info. </wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.kess.keint.com/webservices">
+      <s:element name="Req_By_Userid">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Userid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="All_Info_Boolean" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strPrivate_Numbers" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Req_By_UseridResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Req_By_UseridResult" type="tns:strcPerson" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="strcPerson">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="strName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="strGuid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="strUserid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="strcProperties" type="tns:ArrayOfStrcProperty" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfStrcProperty">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="strcProperty" type="tns:strcProperty" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="strcProperty">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="strPropertyName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="strPropertyValues" type="tns:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Req_By_GUID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObjectGUID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="All_Info_Boolean" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strPrivate_Numbers" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Req_By_GUIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Req_By_GUIDResult" type="tns:strcPerson" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Req_By_Emplid">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Emplid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="All_Info_Boolean" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strPrivate_Numbers" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Req_By_EmplidResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Req_By_EmplidResult" type="tns:strcPerson" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Req_By_UserType">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="All_Info_Boolean" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CreateDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strPrivate_Numbers" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Req_By_UserTypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Req_By_UserTypeResult" type="tns:strcPeople" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="strcPeople">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="strcPeopleInfo" type="tns:ArrayOfStrcPerson" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfStrcPerson">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="strcPerson" nillable="true" type="tns:strcPerson" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Req_By_CostCenter">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Dept" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="All_Info_Boolean" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strPrivate_Numbers" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Req_By_CostCenterResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Req_By_CostCenterResult" type="tns:strcPeople" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Req_By_Phone">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="All_Info_Boolean" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strPrivate_Numbers" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Req_By_PhoneResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Req_By_PhoneResult" type="tns:strcPeople" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Req_By_Name">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="All_Info_Boolean" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strPrivate_Numbers" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Location" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Req_By_NameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Req_By_NameResult" type="tns:strcPeople" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Req_By_Common_Name">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Common_Name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="All_Info_Boolean" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strPrivate_Numbers" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strBUName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Req_By_Common_NameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Req_By_Common_NameResult" type="tns:strcPeople" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Req_By_Location">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Location" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="All_Info_Boolean" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strPrivate_Numbers" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Req_By_LocationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Req_By_LocationResult" type="tns:strcPeople" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Req_By_Name_All_People">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="All_Info_Boolean" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strPrivate_Numbers" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Only_Active_Boolean" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Req_By_Name_All_PeopleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Req_By_Name_All_PeopleResult" type="tns:strcPeople" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Mailcodes">
+        <s:complexType />
+      </s:element>
+      <s:element name="MailcodesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MailcodesResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Business_Units">
+        <s:complexType />
+      </s:element>
+      <s:element name="Business_UnitsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Business_UnitsResult" type="tns:strcPeople" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_Group_Membership">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GroupName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_Group_MembershipResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Get_Group_MembershipResult" type="tns:ArrayOfGroupMembers" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfGroupMembers">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="GroupMembers" nillable="true" type="tns:GroupMembers" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="GroupMembers">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="strUserid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="strName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="strGuid" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Req_Toplevel_Groups">
+        <s:complexType />
+      </s:element>
+      <s:element name="Req_Toplevel_GroupsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Req_Toplevel_GroupsResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Reload_SQL_Toplevel_Groups">
+        <s:complexType />
+      </s:element>
+      <s:element name="Reload_SQL_Toplevel_GroupsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Reload_SQL_Toplevel_GroupsResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GroupRole_Info">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GroupRoleID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="All_Info_Boolean" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GroupRole_InfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GroupRole_InfoResult" type="tns:strcPerson" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Employee_Photo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Userid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EmployeeID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Employee_PhotoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Employee_PhotoResult" type="tns:strcEmployeePhoto" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="strcEmployeePhoto">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="strUserid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="strEmployeeID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="bolPhotoFound" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="byteEmployeePic" type="s:base64Binary" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="strcPerson" nillable="true" type="tns:strcPerson" />
+      <s:element name="strcPeople" nillable="true" type="tns:strcPeople" />
+      <s:element name="ArrayOfString" nillable="true" type="tns:ArrayOfString" />
+      <s:element name="ArrayOfGroupMembers" nillable="true" type="tns:ArrayOfGroupMembers" />
+      <s:element name="strcEmployeePhoto" nillable="true" type="tns:strcEmployeePhoto" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="Req_By_UseridSoapIn">
+    <wsdl:part name="parameters" element="tns:Req_By_Userid" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_UseridSoapOut">
+    <wsdl:part name="parameters" element="tns:Req_By_UseridResponse" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_GUIDSoapIn">
+    <wsdl:part name="parameters" element="tns:Req_By_GUID" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_GUIDSoapOut">
+    <wsdl:part name="parameters" element="tns:Req_By_GUIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_EmplidSoapIn">
+    <wsdl:part name="parameters" element="tns:Req_By_Emplid" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_EmplidSoapOut">
+    <wsdl:part name="parameters" element="tns:Req_By_EmplidResponse" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_UserTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:Req_By_UserType" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_UserTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:Req_By_UserTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_CostCenterSoapIn">
+    <wsdl:part name="parameters" element="tns:Req_By_CostCenter" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_CostCenterSoapOut">
+    <wsdl:part name="parameters" element="tns:Req_By_CostCenterResponse" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_PhoneSoapIn">
+    <wsdl:part name="parameters" element="tns:Req_By_Phone" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_PhoneSoapOut">
+    <wsdl:part name="parameters" element="tns:Req_By_PhoneResponse" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_NameSoapIn">
+    <wsdl:part name="parameters" element="tns:Req_By_Name" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_NameSoapOut">
+    <wsdl:part name="parameters" element="tns:Req_By_NameResponse" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_Common_NameSoapIn">
+    <wsdl:part name="parameters" element="tns:Req_By_Common_Name" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_Common_NameSoapOut">
+    <wsdl:part name="parameters" element="tns:Req_By_Common_NameResponse" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_LocationSoapIn">
+    <wsdl:part name="parameters" element="tns:Req_By_Location" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_LocationSoapOut">
+    <wsdl:part name="parameters" element="tns:Req_By_LocationResponse" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_Name_All_PeopleSoapIn">
+    <wsdl:part name="parameters" element="tns:Req_By_Name_All_People" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_Name_All_PeopleSoapOut">
+    <wsdl:part name="parameters" element="tns:Req_By_Name_All_PeopleResponse" />
+  </wsdl:message>
+  <wsdl:message name="MailcodesSoapIn">
+    <wsdl:part name="parameters" element="tns:Mailcodes" />
+  </wsdl:message>
+  <wsdl:message name="MailcodesSoapOut">
+    <wsdl:part name="parameters" element="tns:MailcodesResponse" />
+  </wsdl:message>
+  <wsdl:message name="Business_UnitsSoapIn">
+    <wsdl:part name="parameters" element="tns:Business_Units" />
+  </wsdl:message>
+  <wsdl:message name="Business_UnitsSoapOut">
+    <wsdl:part name="parameters" element="tns:Business_UnitsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Get_Group_MembershipSoapIn">
+    <wsdl:part name="parameters" element="tns:Get_Group_Membership" />
+  </wsdl:message>
+  <wsdl:message name="Get_Group_MembershipSoapOut">
+    <wsdl:part name="parameters" element="tns:Get_Group_MembershipResponse" />
+  </wsdl:message>
+  <wsdl:message name="Req_Toplevel_GroupsSoapIn">
+    <wsdl:part name="parameters" element="tns:Req_Toplevel_Groups" />
+  </wsdl:message>
+  <wsdl:message name="Req_Toplevel_GroupsSoapOut">
+    <wsdl:part name="parameters" element="tns:Req_Toplevel_GroupsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Reload_SQL_Toplevel_GroupsSoapIn">
+    <wsdl:part name="parameters" element="tns:Reload_SQL_Toplevel_Groups" />
+  </wsdl:message>
+  <wsdl:message name="Reload_SQL_Toplevel_GroupsSoapOut">
+    <wsdl:part name="parameters" element="tns:Reload_SQL_Toplevel_GroupsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GroupRole_InfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GroupRole_Info" />
+  </wsdl:message>
+  <wsdl:message name="GroupRole_InfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GroupRole_InfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="Employee_PhotoSoapIn">
+    <wsdl:part name="parameters" element="tns:Employee_Photo" />
+  </wsdl:message>
+  <wsdl:message name="Employee_PhotoSoapOut">
+    <wsdl:part name="parameters" element="tns:Employee_PhotoResponse" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_UseridHttpGetIn">
+    <wsdl:part name="Userid" type="s:string" />
+    <wsdl:part name="All_Info_Boolean" type="s:string" />
+    <wsdl:part name="strPrivate_Numbers" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_UseridHttpGetOut">
+    <wsdl:part name="Body" element="tns:strcPerson" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_GUIDHttpGetIn">
+    <wsdl:part name="ObjectGUID" type="s:string" />
+    <wsdl:part name="All_Info_Boolean" type="s:string" />
+    <wsdl:part name="strPrivate_Numbers" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_GUIDHttpGetOut">
+    <wsdl:part name="Body" element="tns:strcPerson" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_EmplidHttpGetIn">
+    <wsdl:part name="Emplid" type="s:string" />
+    <wsdl:part name="All_Info_Boolean" type="s:string" />
+    <wsdl:part name="strPrivate_Numbers" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_EmplidHttpGetOut">
+    <wsdl:part name="Body" element="tns:strcPerson" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_UserTypeHttpGetIn">
+    <wsdl:part name="UserType" type="s:string" />
+    <wsdl:part name="All_Info_Boolean" type="s:string" />
+    <wsdl:part name="CreateDate" type="s:string" />
+    <wsdl:part name="strPrivate_Numbers" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_UserTypeHttpGetOut">
+    <wsdl:part name="Body" element="tns:strcPeople" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_CostCenterHttpGetIn">
+    <wsdl:part name="Dept" type="s:string" />
+    <wsdl:part name="All_Info_Boolean" type="s:string" />
+    <wsdl:part name="strPrivate_Numbers" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_CostCenterHttpGetOut">
+    <wsdl:part name="Body" element="tns:strcPeople" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_PhoneHttpGetIn">
+    <wsdl:part name="Phone" type="s:string" />
+    <wsdl:part name="All_Info_Boolean" type="s:string" />
+    <wsdl:part name="strPrivate_Numbers" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_PhoneHttpGetOut">
+    <wsdl:part name="Body" element="tns:strcPeople" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_NameHttpGetIn">
+    <wsdl:part name="Name" type="s:string" />
+    <wsdl:part name="All_Info_Boolean" type="s:string" />
+    <wsdl:part name="strPrivate_Numbers" type="s:string" />
+    <wsdl:part name="Location" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_NameHttpGetOut">
+    <wsdl:part name="Body" element="tns:strcPeople" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_Common_NameHttpGetIn">
+    <wsdl:part name="Common_Name" type="s:string" />
+    <wsdl:part name="All_Info_Boolean" type="s:string" />
+    <wsdl:part name="strPrivate_Numbers" type="s:string" />
+    <wsdl:part name="strBUName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_Common_NameHttpGetOut">
+    <wsdl:part name="Body" element="tns:strcPeople" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_LocationHttpGetIn">
+    <wsdl:part name="strName" type="s:string" />
+    <wsdl:part name="Location" type="s:string" />
+    <wsdl:part name="All_Info_Boolean" type="s:string" />
+    <wsdl:part name="strPrivate_Numbers" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_LocationHttpGetOut">
+    <wsdl:part name="Body" element="tns:strcPeople" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_Name_All_PeopleHttpGetIn">
+    <wsdl:part name="Name" type="s:string" />
+    <wsdl:part name="All_Info_Boolean" type="s:string" />
+    <wsdl:part name="strPrivate_Numbers" type="s:string" />
+    <wsdl:part name="Only_Active_Boolean" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_Name_All_PeopleHttpGetOut">
+    <wsdl:part name="Body" element="tns:strcPeople" />
+  </wsdl:message>
+  <wsdl:message name="MailcodesHttpGetIn" />
+  <wsdl:message name="MailcodesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="Business_UnitsHttpGetIn" />
+  <wsdl:message name="Business_UnitsHttpGetOut">
+    <wsdl:part name="Body" element="tns:strcPeople" />
+  </wsdl:message>
+  <wsdl:message name="Get_Group_MembershipHttpGetIn">
+    <wsdl:part name="GroupName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Get_Group_MembershipHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfGroupMembers" />
+  </wsdl:message>
+  <wsdl:message name="Req_Toplevel_GroupsHttpGetIn" />
+  <wsdl:message name="Req_Toplevel_GroupsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="Reload_SQL_Toplevel_GroupsHttpGetIn" />
+  <wsdl:message name="Reload_SQL_Toplevel_GroupsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="GroupRole_InfoHttpGetIn">
+    <wsdl:part name="GroupRoleID" type="s:string" />
+    <wsdl:part name="All_Info_Boolean" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GroupRole_InfoHttpGetOut">
+    <wsdl:part name="Body" element="tns:strcPerson" />
+  </wsdl:message>
+  <wsdl:message name="Employee_PhotoHttpGetIn">
+    <wsdl:part name="Userid" type="s:string" />
+    <wsdl:part name="EmployeeID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Employee_PhotoHttpGetOut">
+    <wsdl:part name="Body" element="tns:strcEmployeePhoto" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_UseridHttpPostIn">
+    <wsdl:part name="Userid" type="s:string" />
+    <wsdl:part name="All_Info_Boolean" type="s:string" />
+    <wsdl:part name="strPrivate_Numbers" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_UseridHttpPostOut">
+    <wsdl:part name="Body" element="tns:strcPerson" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_GUIDHttpPostIn">
+    <wsdl:part name="ObjectGUID" type="s:string" />
+    <wsdl:part name="All_Info_Boolean" type="s:string" />
+    <wsdl:part name="strPrivate_Numbers" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_GUIDHttpPostOut">
+    <wsdl:part name="Body" element="tns:strcPerson" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_EmplidHttpPostIn">
+    <wsdl:part name="Emplid" type="s:string" />
+    <wsdl:part name="All_Info_Boolean" type="s:string" />
+    <wsdl:part name="strPrivate_Numbers" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_EmplidHttpPostOut">
+    <wsdl:part name="Body" element="tns:strcPerson" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_UserTypeHttpPostIn">
+    <wsdl:part name="UserType" type="s:string" />
+    <wsdl:part name="All_Info_Boolean" type="s:string" />
+    <wsdl:part name="CreateDate" type="s:string" />
+    <wsdl:part name="strPrivate_Numbers" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_UserTypeHttpPostOut">
+    <wsdl:part name="Body" element="tns:strcPeople" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_CostCenterHttpPostIn">
+    <wsdl:part name="Dept" type="s:string" />
+    <wsdl:part name="All_Info_Boolean" type="s:string" />
+    <wsdl:part name="strPrivate_Numbers" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_CostCenterHttpPostOut">
+    <wsdl:part name="Body" element="tns:strcPeople" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_PhoneHttpPostIn">
+    <wsdl:part name="Phone" type="s:string" />
+    <wsdl:part name="All_Info_Boolean" type="s:string" />
+    <wsdl:part name="strPrivate_Numbers" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_PhoneHttpPostOut">
+    <wsdl:part name="Body" element="tns:strcPeople" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_NameHttpPostIn">
+    <wsdl:part name="Name" type="s:string" />
+    <wsdl:part name="All_Info_Boolean" type="s:string" />
+    <wsdl:part name="strPrivate_Numbers" type="s:string" />
+    <wsdl:part name="Location" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_NameHttpPostOut">
+    <wsdl:part name="Body" element="tns:strcPeople" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_Common_NameHttpPostIn">
+    <wsdl:part name="Common_Name" type="s:string" />
+    <wsdl:part name="All_Info_Boolean" type="s:string" />
+    <wsdl:part name="strPrivate_Numbers" type="s:string" />
+    <wsdl:part name="strBUName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_Common_NameHttpPostOut">
+    <wsdl:part name="Body" element="tns:strcPeople" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_LocationHttpPostIn">
+    <wsdl:part name="strName" type="s:string" />
+    <wsdl:part name="Location" type="s:string" />
+    <wsdl:part name="All_Info_Boolean" type="s:string" />
+    <wsdl:part name="strPrivate_Numbers" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_LocationHttpPostOut">
+    <wsdl:part name="Body" element="tns:strcPeople" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_Name_All_PeopleHttpPostIn">
+    <wsdl:part name="Name" type="s:string" />
+    <wsdl:part name="All_Info_Boolean" type="s:string" />
+    <wsdl:part name="strPrivate_Numbers" type="s:string" />
+    <wsdl:part name="Only_Active_Boolean" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Req_By_Name_All_PeopleHttpPostOut">
+    <wsdl:part name="Body" element="tns:strcPeople" />
+  </wsdl:message>
+  <wsdl:message name="MailcodesHttpPostIn" />
+  <wsdl:message name="MailcodesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="Business_UnitsHttpPostIn" />
+  <wsdl:message name="Business_UnitsHttpPostOut">
+    <wsdl:part name="Body" element="tns:strcPeople" />
+  </wsdl:message>
+  <wsdl:message name="Get_Group_MembershipHttpPostIn">
+    <wsdl:part name="GroupName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Get_Group_MembershipHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfGroupMembers" />
+  </wsdl:message>
+  <wsdl:message name="Req_Toplevel_GroupsHttpPostIn" />
+  <wsdl:message name="Req_Toplevel_GroupsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="Reload_SQL_Toplevel_GroupsHttpPostIn" />
+  <wsdl:message name="Reload_SQL_Toplevel_GroupsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="GroupRole_InfoHttpPostIn">
+    <wsdl:part name="GroupRoleID" type="s:string" />
+    <wsdl:part name="All_Info_Boolean" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GroupRole_InfoHttpPostOut">
+    <wsdl:part name="Body" element="tns:strcPerson" />
+  </wsdl:message>
+  <wsdl:message name="Employee_PhotoHttpPostIn">
+    <wsdl:part name="Userid" type="s:string" />
+    <wsdl:part name="EmployeeID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Employee_PhotoHttpPostOut">
+    <wsdl:part name="Body" element="tns:strcEmployeePhoto" />
+  </wsdl:message>
+  <wsdl:portType name="DIR_ServiceSoap">
+    <wsdl:operation name="Req_By_Userid">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve information using the USERID as the key.&lt;ul&gt;&lt;li&gt;&lt;b&gt;Userid&lt;/b&gt; is used to specify the user to retrieve the info about&lt;/li&gt;  &lt;li&gt;&lt;b&gt;All_Info_Boolean&lt;/b&gt; is used to specify if you want all info or just the basic info (&lt;b&gt;true&lt;/b&gt; all, &lt;b&gt;false&lt;/b&gt; just basic info.&lt;/li&gt;) &lt;li&gt;&lt;b&gt;strPrivate_Numbers&lt;/b&gt; is used by the Directory application only. &lt;/ul&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Req_By_UseridSoapIn" />
+      <wsdl:output message="tns:Req_By_UseridSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_GUID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve information using the objectGUID as the key.&lt;ul&gt;&lt;li&gt;&lt;b&gt;ObjectGUID&lt;/b&gt; is used to specify the GUID of the user to retrieve the info about&lt;/li&gt;  &lt;li&gt;&lt;b&gt;All_Info_Boolean&lt;/b&gt; is used to specify if you want all info or just the basic info (&lt;b&gt;true&lt;/b&gt; all, &lt;b&gt;false&lt;/b&gt; just basic info.&lt;/li&gt;&lt;li&gt;&lt;b&gt;strPrivate_Numbers&lt;/b&gt; is used by the Directory application only. &lt;/ul&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Req_By_GUIDSoapIn" />
+      <wsdl:output message="tns:Req_By_GUIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_Emplid">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve information using the Emplid as the key.&lt;ul&gt;&lt;li&gt;&lt;b&gt;Emplid&lt;/b&gt; is used to specify the Emplid of the user to retrieve the info about&lt;/li&gt; &lt;li&gt;&lt;b&gt;strPrivate_Numbers&lt;/b&gt; is used by the Directory application only. &lt;/ul&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Req_By_EmplidSoapIn" />
+      <wsdl:output message="tns:Req_By_EmplidSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_UserType">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve information using the User Type as the key.&lt;ul&gt;&lt;li&gt;&lt;b&gt;UserType&lt;/b&gt; is used to specify the user type to retrieve users&lt;/li&gt; &lt;li&gt;&lt;b&gt;strPrivate_Numbers&lt;/b&gt; is used by the Directory application only. &lt;/ul&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Req_By_UserTypeSoapIn" />
+      <wsdl:output message="tns:Req_By_UserTypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_CostCenter">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve information using SAP Cost Center (stored in the department field) as the key.&lt;li&gt;&lt;b&gt;strPrivate_Numbers&lt;/b&gt; is used by the Directory application only. &lt;/ul&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Req_By_CostCenterSoapIn" />
+      <wsdl:output message="tns:Req_By_CostCenterSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_Phone">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve information using phone as the key.&lt;ul&gt;&lt;li&gt;&lt;b&gt;Phone&lt;/b&gt; is used to specify the user to retrieve the info about&lt;/li&gt; &lt;li&gt;&lt;b&gt;strPrivate_Numbers&lt;/b&gt; is used by the Directory application only. &lt;/ul&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Req_By_PhoneSoapIn" />
+      <wsdl:output message="tns:Req_By_PhoneSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_Name">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve information using Name as the key (this will return  only people &lt;b&gt;with a userid&lt;/b&gt;. &lt;ul&gt;&lt;li&gt;&lt;b&gt;First Name&lt;/b&gt; or &lt;b&gt;Last Name&lt;/b&gt; is used to specify which user to retrieve the info about&lt;/li&gt;  &lt;li&gt;&lt;b&gt;All_Info_Boolean&lt;/b&gt; is used to specify if you want all info or just the &lt;li&gt;&lt;b&gt;strPrivate_Numbers&lt;/b&gt; is used by the Directory application only. &lt;/ul&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Req_By_NameSoapIn" />
+      <wsdl:output message="tns:Req_By_NameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_Common_Name">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve information using Name as the key (this will return  only people &lt;b&gt;with a userid&lt;/b&gt;. &lt;ul&gt;&lt;li&gt;&lt;b&gt;First Name&lt;/b&gt; or &lt;b&gt;Last Name&lt;/b&gt; is used to specify which user to retrieve the info about&lt;/li&gt;  &lt;li&gt;&lt;b&gt;All_Info_Boolean&lt;/b&gt; is used to specify if you want all info or just the &lt;li&gt;&lt;b&gt;strPrivate_Numbers&lt;/b&gt; is used by the Directory application only. &lt;/ul&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Req_By_Common_NameSoapIn" />
+      <wsdl:output message="tns:Req_By_Common_NameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_Location">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve information using Name as the key (this will return  only people &lt;b&gt;with a userid&lt;/b&gt;. &lt;ul&gt;&lt;li&gt;Location&lt;/b&gt; is used to specify which users to retrieve the info about&lt;/li&gt; &lt;ul&gt;&lt;li&gt;&lt;b&gt;First Name&lt;/b&gt; or &lt;b&gt;Last Name&lt;/b&gt; can also be passed in to find matching users at the Location&lt;/li&gt;  &lt;li&gt;&lt;b&gt;All_Info_Boolean&lt;/b&gt; is used to specify if you want all info or just the &lt;li&gt;&lt;b&gt;strPrivate_Numbers&lt;/b&gt; is used by the Directory application only. &lt;/ul&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Req_By_LocationSoapIn" />
+      <wsdl:output message="tns:Req_By_LocationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_Name_All_People">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve information using Name as the key. This will return  all people even if they do not have a userid in the system. &lt;ul&gt;&lt;li&gt;&lt;b&gt;First Name&lt;/b&gt; or &lt;b&gt;Last Name&lt;/b&gt; is used to specify which user to retrieve the info about&lt;/li&gt;  &lt;li&gt;&lt;b&gt;All_Info_Boolean&lt;/b&gt; is used to specify if you want all info or just the &lt;li&gt;&lt;b&gt;strPrivate_Numbers&lt;/b&gt; is used by the Directory application only.  &lt;li&gt;&lt;b&gt;Only_Active_Boolean&lt;/b&gt; is used to specify if you want just current/active employees &lt;/ul&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Req_By_Name_All_PeopleSoapIn" />
+      <wsdl:output message="tns:Req_By_Name_All_PeopleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Mailcodes">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method returns a list of all mailcodes.</wsdl:documentation>
+      <wsdl:input message="tns:MailcodesSoapIn" />
+      <wsdl:output message="tns:MailcodesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Business_Units">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve information for Business Unit Phone Numbers.</wsdl:documentation>
+      <wsdl:input message="tns:Business_UnitsSoapIn" />
+      <wsdl:output message="tns:Business_UnitsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Get_Group_Membership">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve the list of members of the specified Group (role).&lt;ul&gt;&lt;li&gt;&lt;b&gt;GroupName&lt;/b&gt; is used to specify the name of the group(role) that you would like the membership list for.&lt;/li&gt; &lt;/ul&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Get_Group_MembershipSoapIn" />
+      <wsdl:output message="tns:Get_Group_MembershipSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Req_Toplevel_Groups">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve the list of top-level Active Directory Groups (GGR-*). This method will retrieve the info from the SQL Server DB and do an asynchronous refresh of the SQL Server DB info from the actual Active Directory.  If the info in the SQL Server DB is too old, it will first do the refresh and wait (synchronous refresh). &lt;ul&gt; &lt;/ul&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Req_Toplevel_GroupsSoapIn" />
+      <wsdl:output message="tns:Req_Toplevel_GroupsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Reload_SQL_Toplevel_Groups">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve the list of top-level Active Directory Groups (GGR-*) do the refresh and wait (synchronous refresh) of the SQL Server copy. &lt;ul&gt; &lt;/ul&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Reload_SQL_Toplevel_GroupsSoapIn" />
+      <wsdl:output message="tns:Reload_SQL_Toplevel_GroupsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GroupRole_Info">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve information using the ID (userid) of the Group/Role as the key.&lt;ul&gt;&lt;li&gt;&lt;b&gt;GroupRoleID&lt;/b&gt; is used to specify the group to retrieve the info about&lt;/li&gt;  &lt;li&gt;&lt;b&gt;All_Info_Boolean&lt;/b&gt; is used to specify if you want all info or just the basic info (&lt;b&gt;true&lt;/b&gt; all, &lt;b&gt;false&lt;/b&gt; just basic info.&lt;/li&gt;) &lt;/ul&gt;</wsdl:documentation>
+      <wsdl:input message="tns:GroupRole_InfoSoapIn" />
+      <wsdl:output message="tns:GroupRole_InfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Employee_Photo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve employee photo.  Request is made by userid or employee id.&lt;ul&gt;&lt;li&gt;&lt;b&gt;Userid&lt;/b&gt; is used to specify the userid to retrieve the info about&lt;/li&gt;  &lt;li&gt;&lt;b&gt;EmployeeID&lt;/b&gt; is used to specify the employee id to retrieve the info about&lt;/li&gt; &lt;/ul&gt;&lt;br&gt;Info returned is:&lt;ul&gt;&lt;li&gt;&lt;b&gt;bolPhotoFound&lt;/b&gt; will be 'true' if one is found and 'false' if no photo on record&lt;li&gt;&lt;b&gt;byteEmployeePic&lt;/b&gt;byte array containing the photo.&lt;/li&gt;&lt;/ul&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Employee_PhotoSoapIn" />
+      <wsdl:output message="tns:Employee_PhotoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="DIR_ServiceHttpGet">
+    <wsdl:operation name="Req_By_Userid">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve information using the USERID as the key.&lt;ul&gt;&lt;li&gt;&lt;b&gt;Userid&lt;/b&gt; is used to specify the user to retrieve the info about&lt;/li&gt;  &lt;li&gt;&lt;b&gt;All_Info_Boolean&lt;/b&gt; is used to specify if you want all info or just the basic info (&lt;b&gt;true&lt;/b&gt; all, &lt;b&gt;false&lt;/b&gt; just basic info.&lt;/li&gt;) &lt;li&gt;&lt;b&gt;strPrivate_Numbers&lt;/b&gt; is used by the Directory application only. &lt;/ul&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Req_By_UseridHttpGetIn" />
+      <wsdl:output message="tns:Req_By_UseridHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_GUID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve information using the objectGUID as the key.&lt;ul&gt;&lt;li&gt;&lt;b&gt;ObjectGUID&lt;/b&gt; is used to specify the GUID of the user to retrieve the info about&lt;/li&gt;  &lt;li&gt;&lt;b&gt;All_Info_Boolean&lt;/b&gt; is used to specify if you want all info or just the basic info (&lt;b&gt;true&lt;/b&gt; all, &lt;b&gt;false&lt;/b&gt; just basic info.&lt;/li&gt;&lt;li&gt;&lt;b&gt;strPrivate_Numbers&lt;/b&gt; is used by the Directory application only. &lt;/ul&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Req_By_GUIDHttpGetIn" />
+      <wsdl:output message="tns:Req_By_GUIDHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_Emplid">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve information using the Emplid as the key.&lt;ul&gt;&lt;li&gt;&lt;b&gt;Emplid&lt;/b&gt; is used to specify the Emplid of the user to retrieve the info about&lt;/li&gt; &lt;li&gt;&lt;b&gt;strPrivate_Numbers&lt;/b&gt; is used by the Directory application only. &lt;/ul&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Req_By_EmplidHttpGetIn" />
+      <wsdl:output message="tns:Req_By_EmplidHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_UserType">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve information using the User Type as the key.&lt;ul&gt;&lt;li&gt;&lt;b&gt;UserType&lt;/b&gt; is used to specify the user type to retrieve users&lt;/li&gt; &lt;li&gt;&lt;b&gt;strPrivate_Numbers&lt;/b&gt; is used by the Directory application only. &lt;/ul&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Req_By_UserTypeHttpGetIn" />
+      <wsdl:output message="tns:Req_By_UserTypeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_CostCenter">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve information using SAP Cost Center (stored in the department field) as the key.&lt;li&gt;&lt;b&gt;strPrivate_Numbers&lt;/b&gt; is used by the Directory application only. &lt;/ul&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Req_By_CostCenterHttpGetIn" />
+      <wsdl:output message="tns:Req_By_CostCenterHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_Phone">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve information using phone as the key.&lt;ul&gt;&lt;li&gt;&lt;b&gt;Phone&lt;/b&gt; is used to specify the user to retrieve the info about&lt;/li&gt; &lt;li&gt;&lt;b&gt;strPrivate_Numbers&lt;/b&gt; is used by the Directory application only. &lt;/ul&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Req_By_PhoneHttpGetIn" />
+      <wsdl:output message="tns:Req_By_PhoneHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_Name">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve information using Name as the key (this will return  only people &lt;b&gt;with a userid&lt;/b&gt;. &lt;ul&gt;&lt;li&gt;&lt;b&gt;First Name&lt;/b&gt; or &lt;b&gt;Last Name&lt;/b&gt; is used to specify which user to retrieve the info about&lt;/li&gt;  &lt;li&gt;&lt;b&gt;All_Info_Boolean&lt;/b&gt; is used to specify if you want all info or just the &lt;li&gt;&lt;b&gt;strPrivate_Numbers&lt;/b&gt; is used by the Directory application only. &lt;/ul&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Req_By_NameHttpGetIn" />
+      <wsdl:output message="tns:Req_By_NameHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_Common_Name">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve information using Name as the key (this will return  only people &lt;b&gt;with a userid&lt;/b&gt;. &lt;ul&gt;&lt;li&gt;&lt;b&gt;First Name&lt;/b&gt; or &lt;b&gt;Last Name&lt;/b&gt; is used to specify which user to retrieve the info about&lt;/li&gt;  &lt;li&gt;&lt;b&gt;All_Info_Boolean&lt;/b&gt; is used to specify if you want all info or just the &lt;li&gt;&lt;b&gt;strPrivate_Numbers&lt;/b&gt; is used by the Directory application only. &lt;/ul&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Req_By_Common_NameHttpGetIn" />
+      <wsdl:output message="tns:Req_By_Common_NameHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_Location">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve information using Name as the key (this will return  only people &lt;b&gt;with a userid&lt;/b&gt;. &lt;ul&gt;&lt;li&gt;Location&lt;/b&gt; is used to specify which users to retrieve the info about&lt;/li&gt; &lt;ul&gt;&lt;li&gt;&lt;b&gt;First Name&lt;/b&gt; or &lt;b&gt;Last Name&lt;/b&gt; can also be passed in to find matching users at the Location&lt;/li&gt;  &lt;li&gt;&lt;b&gt;All_Info_Boolean&lt;/b&gt; is used to specify if you want all info or just the &lt;li&gt;&lt;b&gt;strPrivate_Numbers&lt;/b&gt; is used by the Directory application only. &lt;/ul&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Req_By_LocationHttpGetIn" />
+      <wsdl:output message="tns:Req_By_LocationHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_Name_All_People">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve information using Name as the key. This will return  all people even if they do not have a userid in the system. &lt;ul&gt;&lt;li&gt;&lt;b&gt;First Name&lt;/b&gt; or &lt;b&gt;Last Name&lt;/b&gt; is used to specify which user to retrieve the info about&lt;/li&gt;  &lt;li&gt;&lt;b&gt;All_Info_Boolean&lt;/b&gt; is used to specify if you want all info or just the &lt;li&gt;&lt;b&gt;strPrivate_Numbers&lt;/b&gt; is used by the Directory application only.  &lt;li&gt;&lt;b&gt;Only_Active_Boolean&lt;/b&gt; is used to specify if you want just current/active employees &lt;/ul&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Req_By_Name_All_PeopleHttpGetIn" />
+      <wsdl:output message="tns:Req_By_Name_All_PeopleHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Mailcodes">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method returns a list of all mailcodes.</wsdl:documentation>
+      <wsdl:input message="tns:MailcodesHttpGetIn" />
+      <wsdl:output message="tns:MailcodesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Business_Units">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve information for Business Unit Phone Numbers.</wsdl:documentation>
+      <wsdl:input message="tns:Business_UnitsHttpGetIn" />
+      <wsdl:output message="tns:Business_UnitsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Get_Group_Membership">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve the list of members of the specified Group (role).&lt;ul&gt;&lt;li&gt;&lt;b&gt;GroupName&lt;/b&gt; is used to specify the name of the group(role) that you would like the membership list for.&lt;/li&gt; &lt;/ul&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Get_Group_MembershipHttpGetIn" />
+      <wsdl:output message="tns:Get_Group_MembershipHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Req_Toplevel_Groups">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve the list of top-level Active Directory Groups (GGR-*). This method will retrieve the info from the SQL Server DB and do an asynchronous refresh of the SQL Server DB info from the actual Active Directory.  If the info in the SQL Server DB is too old, it will first do the refresh and wait (synchronous refresh). &lt;ul&gt; &lt;/ul&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Req_Toplevel_GroupsHttpGetIn" />
+      <wsdl:output message="tns:Req_Toplevel_GroupsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Reload_SQL_Toplevel_Groups">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve the list of top-level Active Directory Groups (GGR-*) do the refresh and wait (synchronous refresh) of the SQL Server copy. &lt;ul&gt; &lt;/ul&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Reload_SQL_Toplevel_GroupsHttpGetIn" />
+      <wsdl:output message="tns:Reload_SQL_Toplevel_GroupsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GroupRole_Info">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve information using the ID (userid) of the Group/Role as the key.&lt;ul&gt;&lt;li&gt;&lt;b&gt;GroupRoleID&lt;/b&gt; is used to specify the group to retrieve the info about&lt;/li&gt;  &lt;li&gt;&lt;b&gt;All_Info_Boolean&lt;/b&gt; is used to specify if you want all info or just the basic info (&lt;b&gt;true&lt;/b&gt; all, &lt;b&gt;false&lt;/b&gt; just basic info.&lt;/li&gt;) &lt;/ul&gt;</wsdl:documentation>
+      <wsdl:input message="tns:GroupRole_InfoHttpGetIn" />
+      <wsdl:output message="tns:GroupRole_InfoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Employee_Photo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve employee photo.  Request is made by userid or employee id.&lt;ul&gt;&lt;li&gt;&lt;b&gt;Userid&lt;/b&gt; is used to specify the userid to retrieve the info about&lt;/li&gt;  &lt;li&gt;&lt;b&gt;EmployeeID&lt;/b&gt; is used to specify the employee id to retrieve the info about&lt;/li&gt; &lt;/ul&gt;&lt;br&gt;Info returned is:&lt;ul&gt;&lt;li&gt;&lt;b&gt;bolPhotoFound&lt;/b&gt; will be 'true' if one is found and 'false' if no photo on record&lt;li&gt;&lt;b&gt;byteEmployeePic&lt;/b&gt;byte array containing the photo.&lt;/li&gt;&lt;/ul&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Employee_PhotoHttpGetIn" />
+      <wsdl:output message="tns:Employee_PhotoHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="DIR_ServiceHttpPost">
+    <wsdl:operation name="Req_By_Userid">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve information using the USERID as the key.&lt;ul&gt;&lt;li&gt;&lt;b&gt;Userid&lt;/b&gt; is used to specify the user to retrieve the info about&lt;/li&gt;  &lt;li&gt;&lt;b&gt;All_Info_Boolean&lt;/b&gt; is used to specify if you want all info or just the basic info (&lt;b&gt;true&lt;/b&gt; all, &lt;b&gt;false&lt;/b&gt; just basic info.&lt;/li&gt;) &lt;li&gt;&lt;b&gt;strPrivate_Numbers&lt;/b&gt; is used by the Directory application only. &lt;/ul&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Req_By_UseridHttpPostIn" />
+      <wsdl:output message="tns:Req_By_UseridHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_GUID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve information using the objectGUID as the key.&lt;ul&gt;&lt;li&gt;&lt;b&gt;ObjectGUID&lt;/b&gt; is used to specify the GUID of the user to retrieve the info about&lt;/li&gt;  &lt;li&gt;&lt;b&gt;All_Info_Boolean&lt;/b&gt; is used to specify if you want all info or just the basic info (&lt;b&gt;true&lt;/b&gt; all, &lt;b&gt;false&lt;/b&gt; just basic info.&lt;/li&gt;&lt;li&gt;&lt;b&gt;strPrivate_Numbers&lt;/b&gt; is used by the Directory application only. &lt;/ul&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Req_By_GUIDHttpPostIn" />
+      <wsdl:output message="tns:Req_By_GUIDHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_Emplid">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve information using the Emplid as the key.&lt;ul&gt;&lt;li&gt;&lt;b&gt;Emplid&lt;/b&gt; is used to specify the Emplid of the user to retrieve the info about&lt;/li&gt; &lt;li&gt;&lt;b&gt;strPrivate_Numbers&lt;/b&gt; is used by the Directory application only. &lt;/ul&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Req_By_EmplidHttpPostIn" />
+      <wsdl:output message="tns:Req_By_EmplidHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_UserType">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve information using the User Type as the key.&lt;ul&gt;&lt;li&gt;&lt;b&gt;UserType&lt;/b&gt; is used to specify the user type to retrieve users&lt;/li&gt; &lt;li&gt;&lt;b&gt;strPrivate_Numbers&lt;/b&gt; is used by the Directory application only. &lt;/ul&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Req_By_UserTypeHttpPostIn" />
+      <wsdl:output message="tns:Req_By_UserTypeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_CostCenter">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve information using SAP Cost Center (stored in the department field) as the key.&lt;li&gt;&lt;b&gt;strPrivate_Numbers&lt;/b&gt; is used by the Directory application only. &lt;/ul&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Req_By_CostCenterHttpPostIn" />
+      <wsdl:output message="tns:Req_By_CostCenterHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_Phone">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve information using phone as the key.&lt;ul&gt;&lt;li&gt;&lt;b&gt;Phone&lt;/b&gt; is used to specify the user to retrieve the info about&lt;/li&gt; &lt;li&gt;&lt;b&gt;strPrivate_Numbers&lt;/b&gt; is used by the Directory application only. &lt;/ul&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Req_By_PhoneHttpPostIn" />
+      <wsdl:output message="tns:Req_By_PhoneHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_Name">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve information using Name as the key (this will return  only people &lt;b&gt;with a userid&lt;/b&gt;. &lt;ul&gt;&lt;li&gt;&lt;b&gt;First Name&lt;/b&gt; or &lt;b&gt;Last Name&lt;/b&gt; is used to specify which user to retrieve the info about&lt;/li&gt;  &lt;li&gt;&lt;b&gt;All_Info_Boolean&lt;/b&gt; is used to specify if you want all info or just the &lt;li&gt;&lt;b&gt;strPrivate_Numbers&lt;/b&gt; is used by the Directory application only. &lt;/ul&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Req_By_NameHttpPostIn" />
+      <wsdl:output message="tns:Req_By_NameHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_Common_Name">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve information using Name as the key (this will return  only people &lt;b&gt;with a userid&lt;/b&gt;. &lt;ul&gt;&lt;li&gt;&lt;b&gt;First Name&lt;/b&gt; or &lt;b&gt;Last Name&lt;/b&gt; is used to specify which user to retrieve the info about&lt;/li&gt;  &lt;li&gt;&lt;b&gt;All_Info_Boolean&lt;/b&gt; is used to specify if you want all info or just the &lt;li&gt;&lt;b&gt;strPrivate_Numbers&lt;/b&gt; is used by the Directory application only. &lt;/ul&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Req_By_Common_NameHttpPostIn" />
+      <wsdl:output message="tns:Req_By_Common_NameHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_Location">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve information using Name as the key (this will return  only people &lt;b&gt;with a userid&lt;/b&gt;. &lt;ul&gt;&lt;li&gt;Location&lt;/b&gt; is used to specify which users to retrieve the info about&lt;/li&gt; &lt;ul&gt;&lt;li&gt;&lt;b&gt;First Name&lt;/b&gt; or &lt;b&gt;Last Name&lt;/b&gt; can also be passed in to find matching users at the Location&lt;/li&gt;  &lt;li&gt;&lt;b&gt;All_Info_Boolean&lt;/b&gt; is used to specify if you want all info or just the &lt;li&gt;&lt;b&gt;strPrivate_Numbers&lt;/b&gt; is used by the Directory application only. &lt;/ul&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Req_By_LocationHttpPostIn" />
+      <wsdl:output message="tns:Req_By_LocationHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_Name_All_People">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve information using Name as the key. This will return  all people even if they do not have a userid in the system. &lt;ul&gt;&lt;li&gt;&lt;b&gt;First Name&lt;/b&gt; or &lt;b&gt;Last Name&lt;/b&gt; is used to specify which user to retrieve the info about&lt;/li&gt;  &lt;li&gt;&lt;b&gt;All_Info_Boolean&lt;/b&gt; is used to specify if you want all info or just the &lt;li&gt;&lt;b&gt;strPrivate_Numbers&lt;/b&gt; is used by the Directory application only.  &lt;li&gt;&lt;b&gt;Only_Active_Boolean&lt;/b&gt; is used to specify if you want just current/active employees &lt;/ul&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Req_By_Name_All_PeopleHttpPostIn" />
+      <wsdl:output message="tns:Req_By_Name_All_PeopleHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Mailcodes">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method returns a list of all mailcodes.</wsdl:documentation>
+      <wsdl:input message="tns:MailcodesHttpPostIn" />
+      <wsdl:output message="tns:MailcodesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Business_Units">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve information for Business Unit Phone Numbers.</wsdl:documentation>
+      <wsdl:input message="tns:Business_UnitsHttpPostIn" />
+      <wsdl:output message="tns:Business_UnitsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Get_Group_Membership">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve the list of members of the specified Group (role).&lt;ul&gt;&lt;li&gt;&lt;b&gt;GroupName&lt;/b&gt; is used to specify the name of the group(role) that you would like the membership list for.&lt;/li&gt; &lt;/ul&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Get_Group_MembershipHttpPostIn" />
+      <wsdl:output message="tns:Get_Group_MembershipHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Req_Toplevel_Groups">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve the list of top-level Active Directory Groups (GGR-*). This method will retrieve the info from the SQL Server DB and do an asynchronous refresh of the SQL Server DB info from the actual Active Directory.  If the info in the SQL Server DB is too old, it will first do the refresh and wait (synchronous refresh). &lt;ul&gt; &lt;/ul&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Req_Toplevel_GroupsHttpPostIn" />
+      <wsdl:output message="tns:Req_Toplevel_GroupsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Reload_SQL_Toplevel_Groups">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve the list of top-level Active Directory Groups (GGR-*) do the refresh and wait (synchronous refresh) of the SQL Server copy. &lt;ul&gt; &lt;/ul&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Reload_SQL_Toplevel_GroupsHttpPostIn" />
+      <wsdl:output message="tns:Reload_SQL_Toplevel_GroupsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GroupRole_Info">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve information using the ID (userid) of the Group/Role as the key.&lt;ul&gt;&lt;li&gt;&lt;b&gt;GroupRoleID&lt;/b&gt; is used to specify the group to retrieve the info about&lt;/li&gt;  &lt;li&gt;&lt;b&gt;All_Info_Boolean&lt;/b&gt; is used to specify if you want all info or just the basic info (&lt;b&gt;true&lt;/b&gt; all, &lt;b&gt;false&lt;/b&gt; just basic info.&lt;/li&gt;) &lt;/ul&gt;</wsdl:documentation>
+      <wsdl:input message="tns:GroupRole_InfoHttpPostIn" />
+      <wsdl:output message="tns:GroupRole_InfoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Employee_Photo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method used to retrieve employee photo.  Request is made by userid or employee id.&lt;ul&gt;&lt;li&gt;&lt;b&gt;Userid&lt;/b&gt; is used to specify the userid to retrieve the info about&lt;/li&gt;  &lt;li&gt;&lt;b&gt;EmployeeID&lt;/b&gt; is used to specify the employee id to retrieve the info about&lt;/li&gt; &lt;/ul&gt;&lt;br&gt;Info returned is:&lt;ul&gt;&lt;li&gt;&lt;b&gt;bolPhotoFound&lt;/b&gt; will be 'true' if one is found and 'false' if no photo on record&lt;li&gt;&lt;b&gt;byteEmployeePic&lt;/b&gt;byte array containing the photo.&lt;/li&gt;&lt;/ul&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Employee_PhotoHttpPostIn" />
+      <wsdl:output message="tns:Employee_PhotoHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DIR_ServiceSoap" type="tns:DIR_ServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Req_By_Userid">
+      <soap:operation soapAction="http://www.kess.keint.com/webservices/Req_By_Userid" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_GUID">
+      <soap:operation soapAction="http://www.kess.keint.com/webservices/Req_By_GUID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_Emplid">
+      <soap:operation soapAction="http://www.kess.keint.com/webservices/Req_By_Emplid" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_UserType">
+      <soap:operation soapAction="http://www.kess.keint.com/webservices/Req_By_UserType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_CostCenter">
+      <soap:operation soapAction="http://www.kess.keint.com/webservices/Req_By_CostCenter" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_Phone">
+      <soap:operation soapAction="http://www.kess.keint.com/webservices/Req_By_Phone" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_Name">
+      <soap:operation soapAction="http://www.kess.keint.com/webservices/Req_By_Name" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_Common_Name">
+      <soap:operation soapAction="http://www.kess.keint.com/webservices/Req_By_Common_Name" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_Location">
+      <soap:operation soapAction="http://www.kess.keint.com/webservices/Req_By_Location" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_Name_All_People">
+      <soap:operation soapAction="http://www.kess.keint.com/webservices/Req_By_Name_All_People" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Mailcodes">
+      <soap:operation soapAction="http://www.kess.keint.com/webservices/Mailcodes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Business_Units">
+      <soap:operation soapAction="http://www.kess.keint.com/webservices/Business_Units" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_Group_Membership">
+      <soap:operation soapAction="http://www.kess.keint.com/webservices/Get_Group_Membership" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Req_Toplevel_Groups">
+      <soap:operation soapAction="http://www.kess.keint.com/webservices/Req_Toplevel_Groups" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Reload_SQL_Toplevel_Groups">
+      <soap:operation soapAction="http://www.kess.keint.com/webservices/Reload_SQL_Toplevel_Groups" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GroupRole_Info">
+      <soap:operation soapAction="http://www.kess.keint.com/webservices/GroupRole_Info" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Employee_Photo">
+      <soap:operation soapAction="http://www.kess.keint.com/webservices/Employee_Photo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DIR_ServiceSoap12" type="tns:DIR_ServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Req_By_Userid">
+      <soap12:operation soapAction="http://www.kess.keint.com/webservices/Req_By_Userid" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_GUID">
+      <soap12:operation soapAction="http://www.kess.keint.com/webservices/Req_By_GUID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_Emplid">
+      <soap12:operation soapAction="http://www.kess.keint.com/webservices/Req_By_Emplid" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_UserType">
+      <soap12:operation soapAction="http://www.kess.keint.com/webservices/Req_By_UserType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_CostCenter">
+      <soap12:operation soapAction="http://www.kess.keint.com/webservices/Req_By_CostCenter" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_Phone">
+      <soap12:operation soapAction="http://www.kess.keint.com/webservices/Req_By_Phone" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_Name">
+      <soap12:operation soapAction="http://www.kess.keint.com/webservices/Req_By_Name" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_Common_Name">
+      <soap12:operation soapAction="http://www.kess.keint.com/webservices/Req_By_Common_Name" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_Location">
+      <soap12:operation soapAction="http://www.kess.keint.com/webservices/Req_By_Location" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_Name_All_People">
+      <soap12:operation soapAction="http://www.kess.keint.com/webservices/Req_By_Name_All_People" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Mailcodes">
+      <soap12:operation soapAction="http://www.kess.keint.com/webservices/Mailcodes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Business_Units">
+      <soap12:operation soapAction="http://www.kess.keint.com/webservices/Business_Units" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_Group_Membership">
+      <soap12:operation soapAction="http://www.kess.keint.com/webservices/Get_Group_Membership" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Req_Toplevel_Groups">
+      <soap12:operation soapAction="http://www.kess.keint.com/webservices/Req_Toplevel_Groups" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Reload_SQL_Toplevel_Groups">
+      <soap12:operation soapAction="http://www.kess.keint.com/webservices/Reload_SQL_Toplevel_Groups" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GroupRole_Info">
+      <soap12:operation soapAction="http://www.kess.keint.com/webservices/GroupRole_Info" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Employee_Photo">
+      <soap12:operation soapAction="http://www.kess.keint.com/webservices/Employee_Photo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DIR_ServiceHttpGet" type="tns:DIR_ServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="Req_By_Userid">
+      <http:operation location="/Req_By_Userid" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_GUID">
+      <http:operation location="/Req_By_GUID" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_Emplid">
+      <http:operation location="/Req_By_Emplid" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_UserType">
+      <http:operation location="/Req_By_UserType" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_CostCenter">
+      <http:operation location="/Req_By_CostCenter" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_Phone">
+      <http:operation location="/Req_By_Phone" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_Name">
+      <http:operation location="/Req_By_Name" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_Common_Name">
+      <http:operation location="/Req_By_Common_Name" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_Location">
+      <http:operation location="/Req_By_Location" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_Name_All_People">
+      <http:operation location="/Req_By_Name_All_People" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Mailcodes">
+      <http:operation location="/Mailcodes" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Business_Units">
+      <http:operation location="/Business_Units" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_Group_Membership">
+      <http:operation location="/Get_Group_Membership" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Req_Toplevel_Groups">
+      <http:operation location="/Req_Toplevel_Groups" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Reload_SQL_Toplevel_Groups">
+      <http:operation location="/Reload_SQL_Toplevel_Groups" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GroupRole_Info">
+      <http:operation location="/GroupRole_Info" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Employee_Photo">
+      <http:operation location="/Employee_Photo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DIR_ServiceHttpPost" type="tns:DIR_ServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="Req_By_Userid">
+      <http:operation location="/Req_By_Userid" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_GUID">
+      <http:operation location="/Req_By_GUID" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_Emplid">
+      <http:operation location="/Req_By_Emplid" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_UserType">
+      <http:operation location="/Req_By_UserType" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_CostCenter">
+      <http:operation location="/Req_By_CostCenter" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_Phone">
+      <http:operation location="/Req_By_Phone" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_Name">
+      <http:operation location="/Req_By_Name" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_Common_Name">
+      <http:operation location="/Req_By_Common_Name" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_Location">
+      <http:operation location="/Req_By_Location" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Req_By_Name_All_People">
+      <http:operation location="/Req_By_Name_All_People" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Mailcodes">
+      <http:operation location="/Mailcodes" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Business_Units">
+      <http:operation location="/Business_Units" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_Group_Membership">
+      <http:operation location="/Get_Group_Membership" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Req_Toplevel_Groups">
+      <http:operation location="/Req_Toplevel_Groups" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Reload_SQL_Toplevel_Groups">
+      <http:operation location="/Reload_SQL_Toplevel_Groups" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GroupRole_Info">
+      <http:operation location="/GroupRole_Info" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Employee_Photo">
+      <http:operation location="/Employee_Photo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DIR_Service">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This web service is used as the KEI Master Directory.It will use KEI Active Directory to retrieve the info. </wsdl:documentation>
+    <wsdl:port name="DIR_ServiceSoap" binding="tns:DIR_ServiceSoap">
+      <soap:address location="http://www-test.kess.keint.com/webservices/KEIMasterDirectory/KEI_Master_Directory.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DIR_ServiceSoap12" binding="tns:DIR_ServiceSoap12">
+      <soap12:address location="http://www-test.kess.keint.com/webservices/KEIMasterDirectory/KEI_Master_Directory.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DIR_ServiceHttpGet" binding="tns:DIR_ServiceHttpGet">
+      <http:address location="http://www-test.kess.keint.com/webservices/KEIMasterDirectory/KEI_Master_Directory.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DIR_ServiceHttpPost" binding="tns:DIR_ServiceHttpPost">
+      <http:address location="http://www-test.kess.keint.com/webservices/KEIMasterDirectory/KEI_Master_Directory.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
